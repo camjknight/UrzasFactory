@@ -18,8 +18,7 @@
 
 - (IBAction)action:(id)sender {
 	if (sender == decksButton) {
-		//DecksViewController * viewController = [[DecksViewController alloc] init];
-		DeckViewController * viewController = [[DeckViewController alloc] init];
+		DecksViewController * viewController = [[DecksViewController alloc] init];
 		[self.navigationController pushViewController:viewController animated:YES];
 		[viewController release];
 	} else if (sender == libraryButton) {
