@@ -40,36 +40,6 @@
 	scrollView.contentSize = CGSizeMake(320,1248);
 	
 	// Load Deck Information
-<<<<<<< HEAD:Classes/DeckViewController.m
-	UrzasFactoryAppDelegate *appDelegate = (UrzasFactoryAppDelegate *)[[UIApplication sharedApplication] delegate];
-	NSManagedObjectContext *context = appDelegate.managedObjectContext;
-	NSArray *array = [DataController objectsForEntityNamed:@"Deck" 
-												 inContext:context];
-	
-	
-	NSLog(@"NSArray : %@", array);
-	
-	array = [DataController objectsForEntityNamed:@"Card" 
-									  matchingKey:@"name" 
-								  containingValue:@"Urza"
-										inContext:context];
-	
-	NSLog(@"NSArray : %@", array);
-	
-	//for (Card *card in array)
-	//	NSLog(@"Card : %@", [card.type name]);
-	
-	NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
-						  @"name", @"Urza", @"typeString", @"Artifact", nil];
-	
-	array = [DataController objectsForEntityNamed:@"Card" 
-							containingKeysAndValues:dict 
-										  usingOR:NO 
-										inContext:context];
-	
-	NSLog(@"NSArray : %@",array);
-=======
->>>>>>> upstream/master:Classes/DeckViewController.m
 
 	
 	// Load view for content within scrollView
