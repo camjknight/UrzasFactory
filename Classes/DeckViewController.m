@@ -40,6 +40,7 @@
 	scrollView.contentSize = CGSizeMake(320,1248);
 	
 	// Load Deck Information
+<<<<<<< HEAD:Classes/DeckViewController.m
 	UrzasFactoryAppDelegate *appDelegate = (UrzasFactoryAppDelegate *)[[UIApplication sharedApplication] delegate];
 	NSManagedObjectContext *context = appDelegate.managedObjectContext;
 	NSArray *array = [DataController objectsForEntityNamed:@"Deck" 
@@ -67,6 +68,8 @@
 										inContext:context];
 	
 	NSLog(@"NSArray : %@",array);
+=======
+>>>>>>> upstream/master:Classes/DeckViewController.m
 
 	
 	// Load view for content within scrollView
@@ -81,7 +84,7 @@
 	
 	// Deck Name //
 
-	NSString *deckName = @"Vampire Deck";
+	NSString *deckName = deck.name;
 	CGSize textSize = [deckName sizeWithFont:textFont constrainedToSize:textConstraint lineBreakMode:UILineBreakModeWordWrap];
 	
 	UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(40, 65, textSize.width, textSize.height)];
@@ -115,7 +118,7 @@
 	
 	// Deck Desc //
 	textFont = [UIFont fontWithName:@"Trebuchet MS" size:18];	
-	NSString *descName = @"This is the deck description. It's a pretty cool deck.";
+	NSString *descName = deck.text;
 	textSize = [descName sizeWithFont:textFont constrainedToSize:textConstraint lineBreakMode:UILineBreakModeWordWrap];
 	
 	UILabel *descLabel = [[UILabel alloc] initWithFrame:CGRectMake(40, 65, textSize.width, textSize.height)];
