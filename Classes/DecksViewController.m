@@ -15,27 +15,20 @@
 
 @synthesize fetchedResultsController = _fetchedResultsController;
 @synthesize newManagedObjectContext = _newManagedObjectContext;
+@synthesize tableView = _tableView;
 
 - (void)viewDidLoad {
+    [super viewDidLoad];
 	self.title = @"Decks";
     // Set up the edit and add buttons.
-    self.navigationItem.leftBarButtonItem = self.editButtonItem;
+//    self.navigationItem.leftBarButtonItem = self.editButtonItem;
     
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject)];
     self.navigationItem.rightBarButtonItem = addButton;
     [addButton release];
     
-    NSError *error = nil;
-    if (![[self fetchedResultsController] performFetch:&error]) {
-        /*
-         Replace this implementation with code to handle the error appropriately.
-         
-         abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. If it is not possible to recover from the error, display an alert panel that instructs the user to quit the application by pressing the Home button.
-         */
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        abort();
-    }
-    [super viewDidLoad];
+	self.tableView.backgroundColor = [UIColor clearColor];
+	self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"backdropBottom.png"]];
 }
 
 - (void)insertNewObject {
@@ -50,14 +43,15 @@
     newDeckViewController.deck = (Deck*)[NSEntityDescription insertNewObjectForEntityForName:@"Deck" inManagedObjectContext:self.newManagedObjectContext];
 	
 	UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:newDeckViewController];
-	
+	navController.navigationBar.barStyle = self.navigationController.navigationBar.barStyle;
+	navController.navigationBar.tintColor = self.navigationController.navigationBar.tintColor;
     [self.navigationController presentModalViewController:navController animated:YES];
 	
 	[newDeckViewController release];
 	[navController release];	
 }
 
-- (void)addViewController:(AddViewController *)controller didFinishWithSave:(BOOL)save {
+- (void)newDeckViewController:(NewDeckViewController *)controller didFinishWithSave:(BOOL)save {
 	
 	if (save) {
 		/*
@@ -78,28 +72,47 @@
 		 4	Unregister as an observer
 		 */
 		NSNotificationCenter *dnc = [NSNotificationCenter defaultCenter];
-		[dnc addObserver:self selector:@selector(addControllerContextDidSave:) name:NSManagedObjectContextDidSaveNotification object:addingManagedObjectContext];
+		[dnc addObserver:self selector:@selector(newControllerContextDidSave:) name:NSManagedObjectContextDidSaveNotification object:self.newManagedObjectContext];
 		
 		NSError *error;
-		if (![addingManagedObjectContext save:&error]) {
+		if (![self.newManagedObjectContext save:&error]) {
 			// Update to handle the error appropriately.
 			NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
 			exit(-1);  // Fail
 		}
-		[dnc removeObserver:self name:NSManagedObjectContextDidSaveNotification object:addingManagedObjectContext];
+		[dnc removeObserver:self name:NSManagedObjectContextDidSaveNotification object:self.newManagedObjectContext];
 	}
 	// Release the adding managed object context.
-	self.addingManagedObjectContext = nil;
+	self.newManagedObjectContext = nil;
 	
 	// Dismiss the modal view to return to the main list
     [self dismissModalViewControllerAnimated:YES];
+}
+- (void)newControllerContextDidSave:(NSNotification*)saveNotification {
+	
+	NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
+	// Merging changes causes the fetched results controller to update its results
+	[context mergeChangesFromContextDidSaveNotification:saveNotification];	
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 	[self.navigationController setNavigationBarHidden:NO animated:animated];
+	NSError *error = nil;
+    if (![[self fetchedResultsController] performFetch:&error]) {
+        /*
+         Replace this implementation with code to handle the error appropriately.
+         
+         abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. If it is not possible to recover from the error, display an alert panel that instructs the user to quit the application by pressing the Home button.
+         */
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        abort();
+    }
+	[self.tableView reloadData];
 }
-
+- (void)viewWillDisappear:(BOOL)animated {
+	self.fetchedResultsController = nil;
+}
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
@@ -138,21 +151,23 @@
     
     NSManagedObject *managedObject = [self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.textLabel.text = [[managedObject valueForKey:@"name"] description];
+	cell.textLabel.backgroundColor = [UIColor clearColor];
     cell.detailTextLabel.text = [[managedObject valueForKey:@"text"] description];
+	cell.detailTextLabel.backgroundColor = [UIColor clearColor];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     static NSString *CellIdentifier = @"Cell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
     }
     cell.backgroundColor = [UIColor colorWithHue:0 saturation:0.5 brightness:0.5 alpha:0.5];
-
+	cell.contentView.backgroundColor = [UIColor clearColor];
 	[self configureCell:cell atIndexPath:indexPath];
-
+	cell.detailTextLabel.textColor = [UIColor blackColor];
     return cell;
 }
 
@@ -162,8 +177,8 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-
-	DeckViewController *deckViewController = [[DeckViewController alloc] initWithNibName:@"DeckView" bundle:nil];
+	[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+	DeckViewController *deckViewController = [[DeckViewController alloc] initWithNibName:@"DeckViewController" bundle:nil];
 	deckViewController.deck = [self.fetchedResultsController objectAtIndexPath:indexPath];
 	[self.navigationController pushViewController:deckViewController animated:YES];
 	[deckViewController release];
@@ -252,7 +267,7 @@
                                                                             sectionNameKeyPath:nil
                                                                                      cacheName:@"Deck"];
     frc.delegate = self;
-    _fetchedResultsController = frc;
+    self.fetchedResultsController = frc;
     
 	[fetchRequest release];
     

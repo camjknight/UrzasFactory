@@ -25,7 +25,7 @@
 		09354108119BE3A000E68A55 /* SwampShaded.png in Resources */ = {isa = PBXBuildFile; fileRef = 093540FA119BE3A000E68A55 /* SwampShaded.png */; };
 		093547FA119E828A00E68A55 /* LibraryPortraitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 093547F9119E828A00E68A55 /* LibraryPortraitViewController.m */; };
 		09B355E5118E92D1001F075C /* DeckViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09B355E3118E92D1001F075C /* DeckViewController.m */; };
-		09B35679118FF6CD001F075C /* DeckView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 09B35678118FF6CD001F075C /* DeckView.xib */; };
+		09B35679118FF6CD001F075C /* DeckViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 09B35678118FF6CD001F075C /* DeckViewController.xib */; };
 		09B356C3119001F0001F075C /* deckContent.png in Resources */ = {isa = PBXBuildFile; fileRef = 09B356C2119001F0001F075C /* deckContent.png */; };
 		09B35743119233EB001F075C /* contentBoard.png in Resources */ = {isa = PBXBuildFile; fileRef = 09B35742119233EB001F075C /* contentBoard.png */; };
 		09CCA09B11868BC1008EFCA6 /* LibraryPortraitView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 09CCA09A11868BC1008EFCA6 /* LibraryPortraitView.xib */; };
@@ -65,10 +65,13 @@
 		5B05D480113727250011D7F3 /* DecksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B05D47F113727250011D7F3 /* DecksViewController.m */; };
 		5B05D4B0113737F60011D7F3 /* Background2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B05D4AF113737F60011D7F3 /* Background2.png */; };
 		5B05D4D3113745030011D7F3 /* UFView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B05D4D2113745030011D7F3 /* UFView.m */; };
+		5B379DC011A48BDA008FE3AC /* UIApplication_TVOut.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B379DBF11A48BDA008FE3AC /* UIApplication_TVOut.m */; };
+		5B379DF211A48C6A008FE3AC /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B379DF111A48C6A008FE3AC /* MediaPlayer.framework */; };
 		5B37B38711881ABB003884A3 /* UrzasFactory.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 5B37B38611881ABB003884A3 /* UrzasFactory.sqlite */; };
 		5B37B497118837B3003884A3 /* defaultCard.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5B37B495118837B3003884A3 /* defaultCard.jpg */; };
 		5B37B498118837B3003884A3 /* Mask.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B37B496118837B3003884A3 /* Mask.png */; };
 		5B37B7511188ECA0003884A3 /* CardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B37B7501188ECA0003884A3 /* CardViewController.m */; };
+		5B508A8411A479EF00956891 /* CardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B508A8311A479EF00956891 /* CardView.xib */; };
 		5B54366E119B76E2007DE23D /* Artist.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B54365D119B76E2007DE23D /* Artist.m */; };
 		5B54366F119B76E2007DE23D /* Subtype.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B54365F119B76E2007DE23D /* Subtype.m */; };
 		5B543670119B76E2007DE23D /* Card.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B543661119B76E2007DE23D /* Card.m */; };
@@ -80,6 +83,10 @@
 		5B543676119B76E2007DE23D /* CardItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B54366D119B76E2007DE23D /* CardItem.m */; };
 		5B5EC98E1138A2DD003DE3BE /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B5EC98D1138A2DD003DE3BE /* Icon.png */; };
 		5B5ECA281139B53C003DE3BE /* UFTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5ECA271139B53C003DE3BE /* UFTableViewController.m */; };
+		5BA9822A11A356C800ACCCB7 /* NewDeckViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA9822611A356C800ACCCB7 /* NewDeckViewController.m */; };
+		5BA9822B11A356C800ACCCB7 /* NewDeckViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5BA9822711A356C800ACCCB7 /* NewDeckViewController.xib */; };
+		5BA982C411A37F8400ACCCB7 /* TextViewBorder.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BA982C311A37F8400ACCCB7 /* TextViewBorder.png */; };
+		5BA983C311A3A87E00ACCCB7 /* DecksViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5BA983C211A3A87E00ACCCB7 /* DecksViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -103,7 +110,7 @@
 		093547F9119E828A00E68A55 /* LibraryPortraitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibraryPortraitViewController.m; sourceTree = "<group>"; };
 		09B355E2118E92D1001F075C /* DeckViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeckViewController.h; sourceTree = "<group>"; };
 		09B355E3118E92D1001F075C /* DeckViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeckViewController.m; sourceTree = "<group>"; };
-		09B35678118FF6CD001F075C /* DeckView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeckView.xib; sourceTree = "<group>"; };
+		09B35678118FF6CD001F075C /* DeckViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeckViewController.xib; sourceTree = "<group>"; };
 		09B356C2119001F0001F075C /* deckContent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = deckContent.png; sourceTree = "<group>"; };
 		09B35742119233EB001F075C /* contentBoard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = contentBoard.png; sourceTree = "<group>"; };
 		09CCA09A11868BC1008EFCA6 /* LibraryPortraitView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LibraryPortraitView.xib; sourceTree = "<group>"; };
@@ -161,11 +168,14 @@
 		5B05D4AF113737F60011D7F3 /* Background2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Background2.png; sourceTree = "<group>"; };
 		5B05D4D1113745030011D7F3 /* UFView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UFView.h; path = Classes/UFView.h; sourceTree = "<group>"; };
 		5B05D4D2113745030011D7F3 /* UFView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UFView.m; path = Classes/UFView.m; sourceTree = "<group>"; };
+		5B379DBF11A48BDA008FE3AC /* UIApplication_TVOut.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIApplication_TVOut.m; sourceTree = "<group>"; };
+		5B379DF111A48C6A008FE3AC /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		5B37B38611881ABB003884A3 /* UrzasFactory.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = UrzasFactory.sqlite; sourceTree = "<group>"; };
 		5B37B495118837B3003884A3 /* defaultCard.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = defaultCard.jpg; sourceTree = "<group>"; };
 		5B37B496118837B3003884A3 /* Mask.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Mask.png; sourceTree = SOURCE_ROOT; };
 		5B37B74F1188ECA0003884A3 /* CardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardViewController.h; sourceTree = "<group>"; };
 		5B37B7501188ECA0003884A3 /* CardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardViewController.m; sourceTree = "<group>"; };
+		5B508A8311A479EF00956891 /* CardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CardView.xib; sourceTree = "<group>"; };
 		5B54365C119B76E2007DE23D /* Artist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Artist.h; sourceTree = "<group>"; };
 		5B54365D119B76E2007DE23D /* Artist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Artist.m; sourceTree = "<group>"; };
 		5B54365E119B76E2007DE23D /* Subtype.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Subtype.h; sourceTree = "<group>"; };
@@ -187,6 +197,11 @@
 		5B5EC98D1138A2DD003DE3BE /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		5B5ECA261139B53C003DE3BE /* UFTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UFTableViewController.h; sourceTree = "<group>"; };
 		5B5ECA271139B53C003DE3BE /* UFTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UFTableViewController.m; sourceTree = "<group>"; };
+		5BA9822511A356C800ACCCB7 /* NewDeckViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewDeckViewController.h; sourceTree = "<group>"; };
+		5BA9822611A356C800ACCCB7 /* NewDeckViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewDeckViewController.m; sourceTree = "<group>"; };
+		5BA9822711A356C800ACCCB7 /* NewDeckViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewDeckViewController.xib; sourceTree = "<group>"; };
+		5BA982C311A37F8400ACCCB7 /* TextViewBorder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TextViewBorder.png; sourceTree = "<group>"; };
+		5BA983C211A3A87E00ACCCB7 /* DecksViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DecksViewController.xib; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* UrzasFactory-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "UrzasFactory-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -201,6 +216,7 @@
 				28D801B40F44B63D00FB423F /* CoreData.framework in Frameworks */,
 				09CCA0B711868E8C008EFCA6 /* QuartzCore.framework in Frameworks */,
 				09CCA13311869357008EFCA6 /* CFNetwork.framework in Frameworks */,
+				5B379DF211A48C6A008FE3AC /* MediaPlayer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -210,9 +226,13 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				5BA983C211A3A87E00ACCCB7 /* DecksViewController.xib */,
 				09CCA0A911868E0F008EFCA6 /* OpenFlow */,
 				5B05D4271136FD360011D7F3 /* MainViewController.h */,
 				5B05D4281136FD360011D7F3 /* MainViewController.m */,
+				5BA9822511A356C800ACCCB7 /* NewDeckViewController.h */,
+				5BA9822611A356C800ACCCB7 /* NewDeckViewController.m */,
+				5BA9822711A356C800ACCCB7 /* NewDeckViewController.xib */,
 				5B05D47E113727250011D7F3 /* DecksViewController.h */,
 				5B05D47F113727250011D7F3 /* DecksViewController.m */,
 				1D3623240D0F684500981E51 /* UrzasFactoryAppDelegate.h */,
@@ -225,6 +245,7 @@
 				09CCA52311876C47008EFCA6 /* CreditsViewController.m */,
 				5B37B74F1188ECA0003884A3 /* CardViewController.h */,
 				5B37B7501188ECA0003884A3 /* CardViewController.m */,
+				5B508A8311A479EF00956891 /* CardView.xib */,
 				09B355E2118E92D1001F075C /* DeckViewController.h */,
 				09B355E3118E92D1001F075C /* DeckViewController.m */,
 				093540DA119B890700E68A55 /* FilterViewController.h */,
@@ -304,6 +325,7 @@
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 				09CCA13211869357008EFCA6 /* CFNetwork.framework */,
+				5B379DF111A48C6A008FE3AC /* MediaPlayer.framework */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -330,7 +352,7 @@
 				09CCA0DE11868F23008EFCA6 /* LibraryLandscapeView.xib */,
 				09CCA52411876C47008EFCA6 /* CreditsViewController.xib */,
 				093540DC119B890700E68A55 /* FilterViewController.xib */,
-				09B35678118FF6CD001F075C /* DeckView.xib */,
+				09B35678118FF6CD001F075C /* DeckViewController.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -352,6 +374,7 @@
 			children = (
 				093540EC119BE38E00E68A55 /* ManaIcons */,
 				09B35742119233EB001F075C /* contentBoard.png */,
+				5BA982C311A37F8400ACCCB7 /* TextViewBorder.png */,
 				09B356C2119001F0001F075C /* deckContent.png */,
 				5B37B495118837B3003884A3 /* defaultCard.jpg */,
 				5B37B496118837B3003884A3 /* Mask.png */,
@@ -404,6 +427,7 @@
 				5B5ECA271139B53C003DE3BE /* UFTableViewController.m */,
 				09CCA45311875F14008EFCA6 /* UINavigationBar+CustomImage.h */,
 				09CCA45411875F14008EFCA6 /* UINavigationBar+CustomImage.m */,
+				5B379DBF11A48BDA008FE3AC /* UIApplication_TVOut.m */,
 			);
 			name = "Base Classes";
 			sourceTree = "<group>";
@@ -469,7 +493,7 @@
 				5B37B38711881ABB003884A3 /* UrzasFactory.sqlite in Resources */,
 				5B37B497118837B3003884A3 /* defaultCard.jpg in Resources */,
 				5B37B498118837B3003884A3 /* Mask.png in Resources */,
-				09B35679118FF6CD001F075C /* DeckView.xib in Resources */,
+				09B35679118FF6CD001F075C /* DeckViewController.xib in Resources */,
 				09B356C3119001F0001F075C /* deckContent.png in Resources */,
 				09B35743119233EB001F075C /* contentBoard.png in Resources */,
 				093540DE119B890700E68A55 /* FilterViewController.xib in Resources */,
@@ -487,6 +511,10 @@
 				09354106119BE3A000E68A55 /* PlainsShaded.png in Resources */,
 				09354107119BE3A000E68A55 /* SwampBright.png in Resources */,
 				09354108119BE3A000E68A55 /* SwampShaded.png in Resources */,
+				5BA9822B11A356C800ACCCB7 /* NewDeckViewController.xib in Resources */,
+				5BA982C411A37F8400ACCCB7 /* TextViewBorder.png in Resources */,
+				5BA983C311A3A87E00ACCCB7 /* DecksViewController.xib in Resources */,
+				5B508A8411A479EF00956891 /* CardView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -527,6 +555,8 @@
 				5B543676119B76E2007DE23D /* CardItem.m in Sources */,
 				093540DD119B890700E68A55 /* FilterViewController.m in Sources */,
 				093547FA119E828A00E68A55 /* LibraryPortraitViewController.m in Sources */,
+				5BA9822A11A356C800ACCCB7 /* NewDeckViewController.m in Sources */,
+				5B379DC011A48BDA008FE3AC /* UIApplication_TVOut.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -538,10 +568,6 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"/Volumes/Skiiing2/CD/ViewBased/Unknown Path/System/Library/Frameworks\"",
-				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -556,10 +582,6 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"/Volumes/Skiiing2/CD/ViewBased/Unknown Path/System/Library/Frameworks\"",
-				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = UrzasFactory_Prefix.pch;
 				INFOPLIST_FILE = "UrzasFactory-Info.plist";
@@ -576,7 +598,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
-				SDKROOT = iphoneos3.1;
+				SDKROOT = iphoneos3.0;
 			};
 			name = Debug;
 		};
@@ -584,12 +606,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Cameron Knight (SU777226JN)";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
-				SDKROOT = iphoneos3.1;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "18F65B61-14FD-4B0F-B53B-63BC762EF35E";
+				SDKROOT = iphoneos3.0;
 			};
 			name = Release;
 		};

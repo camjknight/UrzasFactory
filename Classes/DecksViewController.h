@@ -8,15 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import "UFTableViewController.h"
+#import "NewDeckViewController.h"
 
-
-@interface DecksViewController : UITableViewController <NSFetchedResultsControllerDelegate> {
-
+@interface DecksViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate, NewDeckViewControllerDelegate> {
+	UITableView * _tableView;
 	NSFetchedResultsController *_fetchedResultsController;
 	NSManagedObjectContext *_newManagedObjectContext;
 }
 
-@property (nonatomic, readonly) NSFetchedResultsController *fetchedResultsController;
-@property (nonatomic, readonly) NSManagedObjectContext *newManagedObjectContext;
+@property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
+@property (nonatomic, retain) NSManagedObjectContext *newManagedObjectContext;
+@property (nonatomic, retain) IBOutlet UITableView * tableView;
 
 @end

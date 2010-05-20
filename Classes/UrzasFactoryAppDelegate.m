@@ -9,6 +9,7 @@
 #import "UrzasFactoryAppDelegate.h"
 #import "MainViewController.h"
 #import "CreditsViewController.h"
+
 @implementation UrzasFactoryAppDelegate
 
 @synthesize window, navigationController;
@@ -25,6 +26,7 @@
 	self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
 	[window addSubview:navigationController.view];
 	[window makeKeyAndVisible];
+//	[[UIApplication sharedApplication] performSelector:@selector(startTVOut)];
 }
 
 /**
@@ -46,7 +48,9 @@
     }
 }
 
-
+-(void)application:(UIApplication *)application didChangeStatusBarOrientation:(UIInterfaceOrientation)oldStatusBarOrientation {
+//	[[UIApplication sharedApplication] performSelector:@selector(reformatTVOutOrientation)];	
+}
 #pragma mark -
 #pragma mark Core Data stack
 

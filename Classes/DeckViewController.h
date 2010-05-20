@@ -10,11 +10,13 @@
 
 @class Deck;
 
-@interface DeckViewController : UIViewController {
+@interface DeckViewController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
 	Deck *deck;
+	UITableView * _tableView;
 }
 
 @property (nonatomic, retain) Deck *deck;
-
-
+@property (nonatomic, retain) IBOutlet UITableView * tableView;
+- (void)cancel;
+- (void)addedCard;
 @end

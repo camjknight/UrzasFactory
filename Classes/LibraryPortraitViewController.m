@@ -13,7 +13,7 @@
 #import "UrzasFactoryAppDelegate.h"
 #import "Card.h"
 #import "CardViewController.h"
-
+#import "Deck.h"
 
 @implementation LibraryPortraitViewController
 
@@ -23,17 +23,35 @@
 @synthesize landscapeViewController;
 @synthesize fetchedResultsController = _fetchedResultsController;
 @synthesize predicateDictionary;
-
+@synthesize delegate, deck;
 
 -(void)viewWillAppear:(BOOL)animated {
 	[self.navigationController setNavigationBarHidden:NO animated:animated];
+	[[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientationChanged:)
+												 name:UIDeviceOrientationDidChangeNotification object:nil];	
+	
+	NSError *error = nil;
+	if (![[self fetchedResultsController] performFetch:&error]) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error loading data", @"Error loading data") 
+                                                        message:[NSString stringWithFormat:@"Error was: %@, quitting.", [error localizedDescription]]
+                                                       delegate:self 
+                                              cancelButtonTitle:NSLocalizedString(@"Aw, Nuts", @"Aw, Nuts")
+                                              otherButtonTitles:nil];
+        [alert show];
+		
+	}
+	[self.tView reloadData];
 }
-
+-(void)viewWillDisappear:(BOOL)animated {
+	self.fetchedResultsController = nil;
+	self.fetchRequest = nil;
+}
 - (void)viewDidLoad {
 	NSError *error = nil;
 	fetchOffset = 0;
-	fetchRequest = [[NSFetchRequest alloc] init];
-	_fetchedResultsController = nil;
+	self.fetchRequest = nil;
+	self.fetchedResultsController = nil;
 	
 	if (![[self fetchedResultsController] performFetch:&error]) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error loading data", @"Error loading data") 
@@ -67,30 +85,44 @@
     self.landscapeViewController = viewController;
     [viewController release];
 	
-    [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientationChanged:)
-												 name:UIDeviceOrientationDidChangeNotification object:nil];
 	
 	
 	
 	// Display navigation bar for this view controller.
 
-	self.title = @"Library";
-	UIBarButtonItem *libraryButton = [[[UIBarButtonItem alloc] initWithTitle:@"Filters" 
-																   style:UIBarButtonItemStyleBordered 
-																  target:self 
-																  action:@selector(filterAction:)] autorelease];
-	self.navigationItem.rightBarButtonItem = libraryButton;
+	if (self.deck != nil && self.delegate != nil) {
+		self.title = @"Add to Deck";
+		UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" 
+																		 style:UIBarButtonItemStyleBordered 
+																		target:self 
+																		action:@selector(cancel)];
+		self.navigationItem.leftBarButtonItem = cancelButton;
+		[cancelButton release];
+	} else {
+		self.title = @"Library";
+		UIBarButtonItem *libraryButton = [[UIBarButtonItem alloc] initWithTitle:@"Filters" 
+																		  style:UIBarButtonItemStyleBordered 
+																		 target:self 
+																		 action:@selector(filterAction:)];
+		self.navigationItem.rightBarButtonItem = libraryButton;
+		[libraryButton release];
+	}
+
 }
 
-
+- (void)cancel {
+	[self.delegate cancel];
+}
 - (void)viewDidUnload {
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
+    [[UIDevice currentDevice] endGeneratingDeviceOrientationNotifications];
+
+	self.delegate = nil;
+	self.deck = nil;
     self.landscapeViewController = nil;
 }
 
 - (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [[UIDevice currentDevice] endGeneratingDeviceOrientationNotifications];
     [landscapeViewController release];
 	[fetchRequest release];
     [super dealloc];	
@@ -155,14 +187,14 @@
 #pragma mark Table view methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    NSUInteger count = [[_fetchedResultsController sections] count];
+    NSUInteger count = [[self.fetchedResultsController sections] count];
     return (count == 0) ? 1 : count;
 }
 
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSArray *sections = [_fetchedResultsController sections];
+    NSArray *sections = [self.fetchedResultsController sections];
     NSUInteger count = 0;
     if ([sections count]) {
         id <NSFetchedResultsSectionInfo> sectionInfo = [sections objectAtIndex:section];
@@ -190,7 +222,7 @@
 	cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 	cell.selectionStyle = UITableViewCellSelectionStyleNone;
 	
-	Card *card = [_fetchedResultsController objectAtIndexPath:indexPath];
+	Card *card = [self.fetchedResultsController objectAtIndexPath:indexPath];
 	[cell.textLabel setText:[card valueForKey:@"name"]];
 	
 	NSLog(@"Card with name %@: %@",[card valueForKey:@"name"], card);
@@ -201,14 +233,19 @@
 // Header titles
 - (NSString *)tableView:(UITableView *)tableView  titleForHeaderInSection:(NSInteger)section {
     // Display the dates as section headings.
-    return [[[_fetchedResultsController sections] objectAtIndex:section] name];
+    return [[[self.fetchedResultsController sections] objectAtIndex:section] name];
 }
 
 // Selecting an item on the table view
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
+    [[UIDevice currentDevice] endGeneratingDeviceOrientationNotifications];
+
 	CardViewController * viewController = [[CardViewController alloc] init];
-	Card *card = [_fetchedResultsController objectAtIndexPath:indexPath];
+	Card *card = [self.fetchedResultsController objectAtIndexPath:indexPath];
 	viewController.card = card;
+	viewController.deck = self.deck;
+	viewController.delegate = self.delegate;
 	[self.navigationController pushViewController:viewController animated:YES];
 	[viewController release];
 }
@@ -255,9 +292,9 @@
 
 - (NSFetchedResultsController *)fetchedResultsController {
    
-	/*if (_fetchedResultsController != nil) {
+	if (_fetchedResultsController != nil) {
         return _fetchedResultsController;
-    }*/
+    }
 	
     // The typecast on the next line is not ordinarily necessary, however without it, we get a warning about
     // the returned object not conforming to UITabBarDelegate. The typecast quiets the warning so we get
@@ -268,7 +305,7 @@
 	//predicateDictionary = [NSDictionary dictionaryWithObjectsAndKeys:@"manas.name", @"Green", nil];
         
     NSString *sectionKey = nil;
-	fetchRequest = [DataController requestForEntityNamed:@"Card" 
+	self.fetchRequest = [DataController requestForEntityNamed:@"Card" 
 								  containingKeyAndValues:predicateDictionary
 												 usingOR:YES 
 									 withSortDescriptors:[NSArray arrayWithObjects:@"expansion.name", @"name", nil] 
@@ -286,7 +323,7 @@
                                                                             sectionNameKeyPath:sectionKey
                                                                                      cacheName:@"Card"];
     frc.delegate = self;
-    _fetchedResultsController = frc;
+    self.fetchedResultsController = frc;
     
 	return _fetchedResultsController;
 }  
@@ -295,9 +332,9 @@
 	// Refresh the Table
 	NSError *error = nil;
 	
-	[fetchRequest setPredicate:[DataController predicateContainingKeyAndValues:predicateDictionary usingOR:YES]];
+//	[fetchRequest setPredicate:[DataController predicateContainingKeyAndValues:predicateDictionary usingOR:YES]];
 	
-	if (![_fetchedResultsController performFetch:&error]) {
+	if (![self.fetchedResultsController performFetch:&error]) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error loading data", @"Error loading data") 
                                                         message:[NSString stringWithFormat:@"Error was: %@, quitting.", [error localizedDescription]]
                                                        delegate:self 

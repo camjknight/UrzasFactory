@@ -11,7 +11,7 @@
 
 @class LibraryLandscapeViewController;
 @class DataController;
-
+@class Deck;
 
 @interface LibraryPortraitViewController : UIViewController <UITableViewDelegate,
 															UIScrollViewDelegate,
@@ -32,15 +32,18 @@
 	
 	NSFetchedResultsController *_fetchedResultsController;
 	NSMutableDictionary *predicateDictionary; // Holds the predicate strings
-
+	id delegate;
+	Deck * deck;
 }
 
 @property (nonatomic, retain) IBOutlet UITableView *tView;
 @property (nonatomic, retain) IBOutlet UISearchBar *sBar;
 @property (nonatomic, retain) NSFetchRequest *fetchRequest;
 @property (nonatomic, retain) LibraryLandscapeViewController *landscapeViewController;
-@property (nonatomic, readonly) NSFetchedResultsController *fetchedResultsController;
+@property (nonatomic, retain) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, retain) NSMutableDictionary *predicateDictionary;
+@property (nonatomic, assign) id delegate;
+@property (nonatomic, assign) Deck * deck;
 
 - (void)filterAction:(id)sender;
 - (void)refreshTableData;

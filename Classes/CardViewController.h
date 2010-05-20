@@ -10,13 +10,17 @@
 #import "UFTableViewController.h"
 
 @class Card;
-
-@interface CardViewController : UFTableViewController {
+@class Deck;
+@interface CardViewController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
+	UITableView * _tableView;
 	Card * card;
+	Deck * deck;
 	NSMutableDictionary * fields;
+	id delegate;
 }
-
+@property (nonatomic, retain) IBOutlet UITableView * tableView;
 @property (nonatomic, retain) Card * card;
 @property (nonatomic, retain) NSMutableDictionary * fields;
-
+@property (nonatomic, assign) id delegate;
+@property (nonatomic, assign) Deck * deck;
 @end

@@ -11,6 +11,7 @@
 #import "DeckViewController.h"
 #import "LibraryPortraitViewController.h"
 #import "CreditsViewController.h"
+#import "UrzasFactoryAppDelegate.h"
 
 @implementation MainViewController
 
@@ -58,7 +59,6 @@
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
 	[self.navigationController setNavigationBarHidden:YES animated:animated];
-	
 	self.title = @"Main";
 }
 - (void)didReceiveMemoryWarning {
