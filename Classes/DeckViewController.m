@@ -12,8 +12,11 @@
 #import "UrzasFactoryAppDelegate.h"
 #import "Deck.h"
 #import "Card.h"
+#import "Mana.h"
+#import "ManaItem.h"
 #import "CardItem.h"
 #import "LibraryPortraitViewController.h"
+#import "PieChartView.h"
 
 @implementation DeckViewController
 
@@ -87,6 +90,24 @@
 			cell.textLabel.text = @"Description";
 			cell.detailTextLabel.text = deck.text;
 			break;
+		case 2:
+			cell.textLabel.text = nil;
+			cell.detailTextLabel.text = nil;
+			PieChartView * pieChartView = [[PieChartView alloc] initWithFrame:CGRectMake(20, 0, 240, 240)];
+			NSMutableDictionary * dict = [NSMutableDictionary dictionary];
+			for (CardItem * cardItem in deck.cards) {
+				for (ManaItem * manaItem in cardItem.card.manaItems) {
+					NSNumber * total = [dict objectForKey:manaItem.mana.name];
+					total = [NSNumber numberWithInt:[total intValue] + [manaItem.quantity intValue]];
+					[dict setObject:total forKey:manaItem.mana.name];
+				}
+			}
+			NSLog(@"Dict: %@", dict);
+			pieChartView.dataSet = [dict allValues];
+			pieChartView.labels = [dict allKeys];
+			pieChartView.colors = [NSArray arrayWithObjects:[UIColor redColor], [UIColor blueColor], [UIColor grayColor], [UIColor greenColor], [UIColor yellowColor], nil];
+			[cell addSubview:pieChartView];
+			break;
 		default:
 			break;
 	}
@@ -122,10 +143,14 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-	return 2;
+	if ([deck.cards count])	return 2;
+	else return 1;
 }
 - (NSInteger)tableView:(UITableView *)table numberOfRowsInSection:(NSInteger)section {
 	if (section == 0) {
+		if ([deck.cards count]) {
+			return 3;
+		}
 		return 2;
 	}
 	return [deck.cards count];
@@ -145,6 +170,12 @@
 	}
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+	if (indexPath.section == 0 && indexPath.row == 2) {
+		return 240;
+												}												
+	return 44;
+}
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];

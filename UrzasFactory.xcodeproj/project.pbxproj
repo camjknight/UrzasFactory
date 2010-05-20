@@ -56,6 +56,7 @@
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		28C3AD8A0F43EF2300507BA6 /* UrzasFactory.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 28C3AD890F43EF2300507BA6 /* UrzasFactory.xcdatamodel */; };
 		28D801B40F44B63D00FB423F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28D801B30F44B63D00FB423F /* CoreData.framework */; };
+		5B03F3A711A4BB8F00644E2E /* PieChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B03F3A611A4BB8F00644E2E /* PieChartView.m */; };
 		5B05D42A1136FD360011D7F3 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B05D4281136FD360011D7F3 /* MainViewController.m */; };
 		5B05D42B1136FD360011D7F3 /* MainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B05D4291136FD360011D7F3 /* MainView.xib */; };
 		5B05D42E1136FD620011D7F3 /* Background.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B05D42D1136FD620011D7F3 /* Background.png */; };
@@ -156,6 +157,8 @@
 		28D801B30F44B63D00FB423F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* UrzasFactory_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UrzasFactory_Prefix.pch; sourceTree = "<group>"; };
+		5B03F3A511A4BB8F00644E2E /* PieChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PieChartView.h; sourceTree = "<group>"; };
+		5B03F3A611A4BB8F00644E2E /* PieChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PieChartView.m; sourceTree = "<group>"; };
 		5B05D4271136FD360011D7F3 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainViewController.h; path = ../MainViewController.h; sourceTree = "<group>"; };
 		5B05D4281136FD360011D7F3 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainViewController.m; path = ../MainViewController.m; sourceTree = "<group>"; };
 		5B05D4291136FD360011D7F3 /* MainView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainView.xib; sourceTree = "<group>"; };
@@ -226,6 +229,8 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				5B03F3A511A4BB8F00644E2E /* PieChartView.h */,
+				5B03F3A611A4BB8F00644E2E /* PieChartView.m */,
 				5BA983C211A3A87E00ACCCB7 /* DecksViewController.xib */,
 				09CCA0A911868E0F008EFCA6 /* OpenFlow */,
 				5B05D4271136FD360011D7F3 /* MainViewController.h */,
@@ -557,6 +562,7 @@
 				093547FA119E828A00E68A55 /* LibraryPortraitViewController.m in Sources */,
 				5BA9822A11A356C800ACCCB7 /* NewDeckViewController.m in Sources */,
 				5B379DC011A48BDA008FE3AC /* UIApplication_TVOut.m in Sources */,
+				5B03F3A711A4BB8F00644E2E /* PieChartView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
